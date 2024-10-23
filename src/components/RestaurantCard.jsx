@@ -9,13 +9,13 @@ const RestaurantCard = (props) => {
     const {loggedInUser} = useContext(UserContext)
     
     return (
-     <div className="card p-4 bg-gray-100 shadow-lg rounded-lg transition-transform transform hover:scale-105 dark:bg-gray-800  overflow-hidden w-full max-w-xs mx-auto">
+     <div className="card p-4 bg-gray-100 shadow-lg rounded-lg transition-transform transform hover:scale-105 dark:bg-gray-800  overflow-hidden  w-full h-[280px] max-w-xs mx-auto">
   <img
-    className="res-logo w-full h-40 object-cover rounded-t-lg"
+    className="res-logo max-h-[120px] object-fit rounded-t-lg"
     alt="res-logo"
     src={CDN_URL + cloudinaryImageId}
   />
-  <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl truncate">{name}</h3>
+  <h2 className="mt-2 text-gray-900 dark:text-white sm:text-2xl truncate">{name}</h2>
   <div className="mt-1">
     <h4 className="text-sm text-gray-700 dark:text-gray-300 sm:text-base truncate">{cuisines.join(", ")}</h4>
   </div>
@@ -69,7 +69,7 @@ export const withDiscountLabel = (RestaurantCard) => {
       const labelData = props.resInfo.info.aggregatedDiscountInfoV3;
 
     return (
-    <div className="max-w-xs mx-auto">
+    <div className="max-w-xs mx-auto ">
 <div className="relative">
         {/* Show discount label if discount information is available */}
         {labelData && (

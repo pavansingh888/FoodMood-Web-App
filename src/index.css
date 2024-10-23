@@ -4,7 +4,7 @@
 
   /* Card Image */
   .res-logo {
-    @apply w-full h-40 object-cover rounded-t-lg;
+    @apply w-full h-full object-cover rounded-t-lg;
   }
   
   /* Card Title */
