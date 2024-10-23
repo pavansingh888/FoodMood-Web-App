@@ -22,7 +22,6 @@ const Header = () => {
         </div>
         <div className='nav-items'>
           <ul className="flex space-x-4">
-           <li className="px-3 py-2 text-sm md:text-base text-gray-800 dark:text-gray-200">{onlineStatus ? "✅ Online" : "🔴 Offline"}</li>
            <Link to={'/'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">Home</button></Link>
            <Link to={'/about'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">About us</button></Link>
            <Link to={'/contact'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">Contact us</button></Link>
@@ -31,7 +30,10 @@ const Header = () => {
            <Link to={'/cart'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">Cart ({cartItems.length})</button></Link>
            
            <Link to={'/instamart'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">InstaMart</button></Link>
-            <button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700" onClick={()=>{loginBtnName === 'Login' ? setLoginBtnName('Logout') : setLoginBtnName('Login')}}>{loginBtnName}</button>
+            <button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700" onClick={()=>{loginBtnName === 'Login' ? setLoginBtnName('Logout') : setLoginBtnName('Login')}}>
+              {loginBtnName}
+              {onlineStatus ? <span class="login-btn-green text-green-500 text-base"> ●</span> : <span class="login-btn-red text-red-800 text-base"> ●</span>} 
+              </button>
             <li className="px-3 py-2 text-sm md:text-base text-gray-800 dark:text-gray-200">{loggedInUser}</li>
 
           </ul>
