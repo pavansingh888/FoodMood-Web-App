@@ -34,10 +34,10 @@ function RestaurantMenu() {
       <p className='text-gray-700 dark:text-gray-300 mb-6'>
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
-      {Category.map((catergory, index) => { 
+      {Category.map((category, index) => { 
         return <RestaurantCategory 
-                  key={catergory?.card?.card?.title}  
-                  data = {catergory?.card?.card}
+                  key={category?.card?.card?.title}  
+                  data = {category?.card?.card}
                   showItems={index == showIndex ? true : false}
                   setShowIndex = {() => (setShowIndex(index))}
                   /> 

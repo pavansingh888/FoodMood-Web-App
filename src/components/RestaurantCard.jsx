@@ -9,13 +9,13 @@ const RestaurantCard = (props) => {
     const {loggedInUser} = useContext(UserContext)
     
     return (
-     <div className="card p-4 mb-6 bg-gray-100 shadow-lg rounded-lg transition-transform transform hover:scale-105 dark:bg-gray-800 relative overflow-hidden max-w-xs mx-auto">
+     <div className="card p-4 bg-gray-100 shadow-lg rounded-lg transition-transform transform hover:scale-105 dark:bg-gray-800  overflow-hidden w-full max-w-xs mx-auto">
   <img
     className="res-logo w-full h-40 object-cover rounded-t-lg"
     alt="res-logo"
     src={CDN_URL + cloudinaryImageId}
   />
-  <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{name}</h3>
+  <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl truncate">{name}</h3>
   <div className="mt-1">
     <h4 className="text-sm text-gray-700 dark:text-gray-300 sm:text-base truncate">{cuisines.join(", ")}</h4>
   </div>
@@ -51,12 +51,12 @@ const RestaurantCard = (props) => {
       </svg>
     </div>
     <div>
-    &nbsp;{avgRating}
+    &nbsp;{avgRating} • {sla.slaString}
     </div>    
   </h4>
-  <h4 className="mt-2 text-gray-700 dark:text-gray-300 text-sm sm:text-base">{costForTwo}</h4>
-  <h4 className="mt-1 text-gray-700 dark:text-gray-300 text-sm sm:text-base">{sla.slaString}</h4>
-  <h4 className="mt-1 text-gray-700 dark:text-gray-300 text-sm sm:text-base">User: {loggedInUser}</h4>
+  <h4 className="mt-2 text-orange-600 dark:text-orange-400 text-sm sm:text-base">{costForTwo}</h4>
+  {/* <h4 className="mt-1 text-gray-700 dark:text-gray-300 text-sm sm:text-base">{sla.slaString}</h4> */}
+  {/* <h4 className="mt-1 text-gray-700 dark:text-gray-300 text-sm sm:text-base">User: {loggedInUser}</h4> */}
 </div>
 
     )
@@ -68,13 +68,22 @@ export const withDiscountLabel = (RestaurantCard) => {
   return (props) => {
       const labelData = props.resInfo.info.aggregatedDiscountInfoV3;
 
-    return (<div >
-      <label className="relative top-12 left-8 m-2 p-2 bg-green-600 text-white  text-xs rounded-lg z-10">
-            { `${labelData.discountTag ? labelData.discountTag : ""} ${labelData.header} ${labelData.subHeader}` }
-      </label>
-       <RestaurantCard {...props}/>
-    </div>)
-}
+    return (
+    <div className="max-w-xs mx-auto">
+<div className="relative">
+        {/* Show discount label if discount information is available */}
+        {labelData && (
+          <div className="absolute top-2 left-3 text-white bg-green-600 text-xs font-semibold rounded-md shadow-[2px_2px_10px_gray] z-10 px-2 py-1 ">
+            { `${labelData.discountTag ? labelData.discountTag : ""} ${labelData.header ? labelData.header : ""} ${labelData.subHeader ? labelData.subHeader : ""}` }
+          </div>
+        )}
+        {/* Render the WrappedComponent (RestaurantCard) */}
+        <RestaurantCard {...props}/>
+      </div>
+    </div>
+    
+  )
+}  
 }
 
 

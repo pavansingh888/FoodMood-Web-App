@@ -26,12 +26,12 @@ class UserClass extends React.Component {
     }
 
     async componentDidMount(){
-        // console.log(this.state.userInfo.name +" did mount");
         //API call
         const data = await fetch("https://api.github.com/users/pavansingh888")
         const json = await data.json()
         // console.log(json);
         this.setState({userInfo:json})
+        // console.log(this.state.userInfo.name +" did mount");
     }
 
     componentWillUnmount(){
@@ -72,8 +72,8 @@ Parent constructor
 Parent render
 Pavan Singh Child constructor
 Pavan Singh render
-Pavan Singh did mount
 Parent did mount
+Pavan Singh did mount
 * Update life cycle after setState in child component - UserClass
 Pavan Singh render
 Child did updated

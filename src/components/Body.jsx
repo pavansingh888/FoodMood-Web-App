@@ -8,13 +8,13 @@ import UserContext from "../utils/UserContext";
 
 const Body = () => {
   
-  const [restaurantList, setrestaurantList] = useState([]);
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
-  const [fetchedList,setFetchedList] = useState([]);
+  const [restaurantList, setrestaurantList] = useState([]); //to store all the restaurants that will be displayed on UI
+  const [isFiltered, setIsFiltered] = useState(false); //to store filtered y/n
+  const [searchInput, setSearchInput] = useState(""); //to store search input text
+  const [fetchedList,setFetchedList] = useState([]); //Used to store restaurant data after API call - (Why can't we use normal JS variable to store restaurant list??) Although we don't want to update this state after first update during API call, so just to keep the fetched restaurant list in next render also - we are using it as state variable instead of normal JS 'let' variable.
+ 
   
-  // console.log(restaurantList);
-  //Using higher order component
+  //Using higher order component - Which will give a Restaurant card component wrapped in a div with the discount label.
   const RestaurantCardDiscount = withDiscountLabel(RestaurantCard);
 
   const {loggedInUser, setUserName} = useContext(UserContext)
@@ -32,27 +32,30 @@ const Body = () => {
     }
   }
 
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
-  }; 
+  // const handleKeyDown = (event) => {
+  //   if (event.key === 'Enter') {
+  //     handleSearch();
+  //   }
+  // }; 
 
   const handleSearch = () => {
+    // console.log(fetchedList);
     if(searchInput){
       const filteredData = fetchedList.filter((data)=> data.info.name.toLowerCase().includes(searchInput.toLowerCase()))
       setrestaurantList(filteredData);
-      setSearchInput("");
+      // setSearchInput("");
     }
   }
 
   useEffect(() => {
-    // Attach keydown event listener
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      // Cleanup event listener on component unmount
-      window.removeEventListener('keydown', handleKeyDown);
-    };
+    const filteredData = fetchedList.filter((data)=> data.info.name.toLowerCase().includes(searchInput.toLowerCase()))
+    setrestaurantList(filteredData);
+    // // Attach keydown event listener
+    // window.addEventListener('keydown', handleKeyDown);
+    // return () => {
+    //   // Cleanup event listener on component unmount
+    //   window.removeEventListener('keydown', handleKeyDown);
+    // };
   }, [searchInput]);
 
   useEffect(() => {
@@ -62,11 +65,12 @@ const Body = () => {
   const fetchRestaurant = async () => {
     const data = await fetch(FETCH_RES_URL);
     const json = await data.json();
-    setFetchedList([...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
-    setrestaurantList([...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants]) //optional chaining
+    console.log(json);
+    setFetchedList([...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
+    setrestaurantList([...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants]) //optional chaining
   }
 
-  const onlineStatus = useOnlineStatus();
+  const onlineStatus = useOnlineStatus(); //will return the online status of the browser i.e if its connected to internet or not - using event listeners.
 
   if(onlineStatus === false) {
     return (<h1>You're offline, Please check your internet connection.</h1>)
@@ -108,7 +112,7 @@ const Body = () => {
         />
         </div>
       </div>
-      <div className="res-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 py-8 dark:bg-gray-900">
+      <div className="res-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 my-4 mx-12 dark:bg-gray-900 ">
         {restaurantList.length === 0
           ? Array.from({ length: 10 }).map((_, index) => <ShimmerCard key={index} />)
           : restaurantList.map((Info) => (

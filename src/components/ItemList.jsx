@@ -25,12 +25,16 @@ function ItemList({items}) {
         {
         items.map((item) => (
         <div key={item.card.info.id} className='flex justify-between p-2 m-2 border-b-[1px]'>
+
+          {/* div for both image div and item description div */}
            <div className='flex'>
 
+           {/* div for image */}
            <div className='max-w-20 h-auto mr-3 my-2'>
             {item?.card?.info?.imageId ?  <img src={CDN_URL + item?.card?.info?.imageId} className='rounded-lg'/> : <img src={LOGO_URL} className='rounded-lg'/> }  
            </div>
-
+           
+           {/* div for item name price and description */}
            <div className='py-2 max-w-96'>
             <span className='text-base font-medium'>{item?.card?.info?.name}</span>
             <p className='text-sm font-medium max-w-96 '>₹ { item?.card?.info?.price/100 ? item?.card?.info?.price/100 : item?.card?.info?.defaultPrice/100 }</p> 
@@ -38,7 +42,8 @@ function ItemList({items}) {
            </div>
 
            </div>
-
+          
+          {/* div for add button */}
            <div className='justify-self-stretch'>
              <button className="bg-teal-500 hover:bg-teal-600 text-white font-bold w-32 py-2 uppercase text-center rounded-lg transition duration-100 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-orange-400 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-orange-500" 
              onClick={() => handleAddItem(item)}>

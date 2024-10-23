@@ -1,11 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Card Styles */
-.card {
-    @apply p-4 mb-6 bg-gray-100 shadow-lg rounded-lg transition-transform transform hover:scale-105 dark:bg-gray-800 relative overflow-hidden;
-  }
-  
+
   /* Card Image */
   .res-logo {
     @apply w-full h-40 object-cover rounded-t-lg;
@@ -16,24 +12,11 @@
     @apply mt-2 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl;
   }
   
-  /* Cuisines Text */
+  /* Rating Text */
   .card h4:nth-of-type(1) {
     @apply text-sm text-gray-700 dark:text-gray-300 sm:text-base truncate;
   }
   
-  /* Rating Text */
-  .card h4:nth-of-type(2) {
-    @apply mt-2 flex items-center text-orange-600 dark:text-orange-400 text-sm sm:text-base;
-  }
-  
-  /* Cost For Two Text */
-  .card h4:nth-of-type(3) {
-    @apply mt-2 text-gray-700 dark:text-gray-300 text-sm sm:text-base;
-  }
-  
-  /* SLA Text */
-  .card h4:nth-of-type(4) {
-    @apply mt-1 text-gray-700 dark:text-gray-300 text-sm sm:text-base;
-  }
+
   
   

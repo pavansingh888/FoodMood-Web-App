@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FETCH_RESMENU_URL } from '../utils/constants';
 
+//Using Custom hook to fetch Res-Menu data
 const useRestaurantMenu = (resId) => {
     const [resMenu, setResMenu] = useState(null)
 

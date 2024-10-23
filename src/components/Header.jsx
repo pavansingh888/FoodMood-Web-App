@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const Header = () => {
   //Subscribing to store using selector - useSelector() gives access to our whole store, and we access part of the store. we need to tell it what part of store we need access to. (store.SliceName.StateValueNamePresentInThatSliceStateObject)
   const cartItems = useSelector((store) => store.cart.items); //Here cartItems will be value of items which is an empty array for now.
-  console.log(cartItems);
+  // console.log(cartItems);
 
   const [loginBtnName,setLoginBtnName] = useState("Login")
   const onlineStatus = useOnlineStatus()
@@ -26,6 +26,7 @@ const Header = () => {
            <Link to={'/'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">Home</button></Link>
            <Link to={'/about'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">About us</button></Link>
            <Link to={'/contact'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">Contact us</button></Link>
+            
            {/* Cart */}
            <Link to={'/cart'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">Cart ({cartItems.length})</button></Link>
            
