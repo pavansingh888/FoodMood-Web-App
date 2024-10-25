@@ -30,10 +30,14 @@ const Header = () => {
            <Link to={'/cart'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">Cart ({cartItems.length})</button></Link>
            
            <Link to={'/instamart'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">InstaMart</button></Link>
-            <button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700" onClick={()=>{loginBtnName === 'Login' ? setLoginBtnName('Logout') : setLoginBtnName('Login')}}>
+           <Link to={'/login'}><button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700">
+              {loginBtnName}
+              {onlineStatus ? <span className="login-btn-green text-green-500 text-base"> ●</span> : <span class="login-btn-red text-red-800 text-base"> ●</span>} 
+              </button></Link>
+            {/* <button className="nav-btns px-3 py-2 text-sm md:text-base bg-orange-600 text-white rounded-md hover:bg-orange-700 dark:bg-orange-600 dark:hover:bg-orange-700" onClick={()=>{loginBtnName === 'Login' ? setLoginBtnName('Logout') : setLoginBtnName('Login')}}>
               {loginBtnName}
               {onlineStatus ? <span class="login-btn-green text-green-500 text-base"> ●</span> : <span class="login-btn-red text-red-800 text-base"> ●</span>} 
-              </button>
+              </button> */}
             <li className="px-3 py-2 text-sm md:text-base text-gray-800 dark:text-gray-200">{loggedInUser}</li>
 
           </ul>

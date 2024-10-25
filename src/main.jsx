@@ -10,6 +10,7 @@ import Body from './components/Body'
 import RestaurantMenu from './components/RestaurantMenu.jsx'
 import ShimmerCard from './components/ShimmerCard.jsx'
 import Cart from './components/Cart.jsx'
+import Login from './components/Login.jsx'
 // import Instamart from './components/Instamart.jsx' //Instead of this we do lazy loading/ On Demad loading
 
 const Instamart = lazy(() => {return import('./components/Instamart.jsx')})
@@ -47,7 +48,12 @@ const router = createBrowserRouter([
       
 
     ]
-  }  
+  },
+  {
+    path: '/login',
+    element: <Login />, // This renders only the Login page without the App layout
+  },  
+
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

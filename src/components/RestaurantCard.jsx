@@ -9,17 +9,17 @@ const RestaurantCard = (props) => {
     const {loggedInUser} = useContext(UserContext)
     
     return (
-     <div className="card p-4 bg-gray-100 shadow-lg rounded-lg transition-transform transform hover:scale-105 dark:bg-gray-800  overflow-hidden  w-full h-[280px] max-w-xs mx-auto">
+     <div className="card p-4 bg-gray-100 shadow-lg rounded-lg transition-transform transform hover:scale-105 dark:bg-gray-800  overflow-hidden w-[280px]  sm:w-full h-[280px] max-w-xs mx-auto">
   <img
     className="res-logo max-h-[120px] object-fit rounded-t-lg"
     alt="res-logo"
     src={CDN_URL + cloudinaryImageId}
   />
-  <h2 className="mt-2 text-gray-900 dark:text-white sm:text-2xl truncate">{name}</h2>
+  <h2 className="mt-2 text-gray-900 dark:text-white text-2xl sm:text-2xl truncate">{name}</h2>
   <div className="mt-1">
-    <h4 className="text-sm text-gray-700 dark:text-gray-300 sm:text-base truncate">{cuisines.join(", ")}</h4>
+    <h4 className="text-base text-gray-700 dark:text-gray-300 sm:text-base truncate">{cuisines.join(", ")}</h4>
   </div>
-  <h4 className="mt-2 flex items-center text-orange-600 dark:text-orange-400 text-sm sm:text-base">
+  <h4 className="mt-2 flex items-center text-orange-600 dark:text-orange-400 text-base sm:text-base">
     <div>
       <svg
       width="20"
@@ -54,7 +54,7 @@ const RestaurantCard = (props) => {
     &nbsp;{avgRating} • {sla.slaString}
     </div>    
   </h4>
-  <h4 className="mt-2 text-orange-600 dark:text-orange-400 text-sm sm:text-base">{costForTwo}</h4>
+  <h4 className="mt-2 text-orange-600 dark:text-orange-400 text-base sm:text-base">{costForTwo}</h4>
   {/* <h4 className="mt-1 text-gray-700 dark:text-gray-300 text-sm sm:text-base">{sla.slaString}</h4> */}
   {/* <h4 className="mt-1 text-gray-700 dark:text-gray-300 text-sm sm:text-base">User: {loggedInUser}</h4> */}
 </div>
@@ -69,7 +69,7 @@ export const withDiscountLabel = (RestaurantCard) => {
       const labelData = props.resInfo.info.aggregatedDiscountInfoV3;
 
     return (
-    <div className="max-w-xs mx-auto ">
+    <div className="max-w-[280px] mx-auto ">
 <div className="relative">
         {/* Show discount label if discount information is available */}
         {labelData && (
