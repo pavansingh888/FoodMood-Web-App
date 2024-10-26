@@ -114,9 +114,9 @@ const Body = () => {
       </div>
       {searchInput && restaurantList.length === 0 ? <div className="error-container text-white text-center my-5 mx-3 font-sans text-lg ">Sorry, we couldn't find any results for "{searchInput}"</div> : ""}
       
-      <div className="res-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-7 my-4 mx-20 dark:bg-gray-900">
+      <div className="res-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-7 mx-20 py-8 dark:bg-gray-900">
         {fetchedList.length === 0
-          ? Array.from({ length: 10 }).map((_, index) => <ShimmerCard key={index} />)
+          ? Array.from({ length: 20 }).map((_, index) => <ShimmerCard key={index} />)
           : restaurantList.map((Info) => (
               <Link to={`/restaurant/${Info.info.id}`} key={Info.info.id} className="res-link">
                 {Info?.info?.aggregatedDiscountInfoV3 ? <RestaurantCardDiscount resInfo={Info} /> : <RestaurantCard resInfo={Info} /> }

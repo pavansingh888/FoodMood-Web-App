@@ -1,3 +1,4 @@
+```javascript
 import React from 'react'
 
 class UserClass extends React.Component {
@@ -82,3 +83,4 @@ Will unmount called
 */
 
 export default UserClass
+```

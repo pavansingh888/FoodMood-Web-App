@@ -1,50 +1,30 @@
-import React from 'react'
-import UserClass from './UserClass'
-import User from './User'
-import UserContext from '../utils/UserContext'
+import React from 'react';
+import burgerFoodImage from '../assets/images/burgerFoodImage.png'
 
+const About = () => {
 
-class About extends React.Component{
-  constructor(props){
-    super(props)
-    // console.log("Parent constructor");
-  }
-
-  async componentDidMount(){
-    // console.log("Parent did mount");
-    //Api Call
-  }
-
-  render(){
-    // console.log("Parent render");
-    //* In class based component, we do not have hooks. How we can access conext here?
-    return(<div>
-      <h1>About class Component</h1>
-      <div>
-        Logged-In user:
-        <UserContext.Consumer>
-          {({loggedInUser}) => {
-            // console.log(data); //{loggedInUser: 'Default User'}
-            return <h1 className='text-lg font-semibold'>{loggedInUser}</h1>
-            }}
-        </UserContext.Consumer>
-      </div>
-      <UserClass location={"Bhopal"} contact={"psinghp888@gmail.com"}/>
-    </div>)
-  }
+    return (
+    <div className='about-container-main w-full flex-grow bg-gray-200 dark:bg-gray-900'>
+        {/* <div className='about-profile-container'></div> */}
+        <div className='about-container max-w-7xl py-6 mt-[50px] mb-[10px] mx-auto flex justify-evenly flex-wrap items-center bg-gray-200 dark:bg-inherit'>
+            <div className='about-left w-full max-w-[600px] max-h-96 py-8 px-4  bg-inherit'>
+                <h1 className='text-6xl font-semibold font-sans py-2'>
+                    Welcome to 
+                    <br></br> 
+                    The spectrum of 
+                    <br></br> 
+                    <span>Fresh and Delicious Food</span> 
+                </h1>
+                <h4 className='italic text-2xl font-semibold'>"FoodMood - Good Food, Good Mood!"</h4>
+            </div>
+            <div className='about-right w-full max-w-[500px] max-h-96 object-cover bg-inherit'>
+                <img src={burgerFoodImage}></img>
+            </div>
+        </div>
+    </div>
+    )
 }
-/*
-* -------  Class Component life cycle :  ----------
-* https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
-*
-*Parent constructor
-*Parent render
-*First Child constructor
-*First render
-*Second Child constructor
-*Second render
-*First did mount
-*Second did mount
-*Parent did mount
- */
+
 export default About
+
+ 
