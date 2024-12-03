@@ -4,24 +4,31 @@ import burgerFoodImage from '../assets/images/burgerFoodImage.png'
 const About = () => {
 
     return (
-    <div className='about-container-main w-full flex-grow bg-gray-200 dark:bg-gray-900'>
-        {/* <div className='about-profile-container'></div> */}
-        <div className='about-container max-w-7xl py-6 mt-[50px] mb-[10px] mx-auto flex justify-evenly flex-wrap items-center bg-gray-200 dark:bg-inherit'>
-            <div className='about-left w-full max-w-[600px] max-h-96 py-8 px-4  bg-inherit'>
-                <h1 className='text-6xl font-semibold font-sans py-2'>
-                    Welcome to 
-                    <br></br> 
-                    The spectrum of 
-                    <br></br> 
-                    <span>Fresh and Delicious Food</span> 
-                </h1>
-                <h4 className='italic text-2xl font-semibold'>"FoodMood - Good Food, Good Mood!"</h4>
-            </div>
-            <div className='about-right w-full max-w-[500px] max-h-96 object-cover bg-inherit'>
-                <img src={burgerFoodImage}></img>
-            </div>
-        </div>
+        <div className="about-container-main w-full min-h-[84vh]  bg-gray-900 dark:bg-gray-900 p-12">
+  <div className="about-container dark:bg-gray-900 mt-[50px] mb-[10px] mx-[25px]  flex  flex-col min-[792px]:flex-row justify-evenly items-center">
+    
+   {/* Left Section */}
+   <div className="about-left flex flex-wrap flex-col justify-start items-start overflow-y-hidden font-sans max-[880px]:mb-[20px] ">
+      <h1 className="text-7xl dark:text-white max-[320px]:text-[22px] max-[350px]:text-[25px] max-[470px]:text-[35px] max-[950px]:text-[45px] max-[1150px]:text-[50px]">
+        Welcome to  
+        <br /> 
+        The world of 
+        <br /> 
+        <span className="bg-orange-500 px-[10px] rounded-[15px]">Fresh and Delicious Food</span>
+      </h1>
+      <h4 className="italic text-[25px] mt-[10px] text-white max-[320px]:text-[8px] max-[350px]:text-[10px] max-[470px]:text-[12px] max-[950px]:text-[18px] max-[1150px]:text-[20px]   ">
+        "Food<span className='text-red-500 dark:text-orange-500'>Mood</span> - Good Food, Good Mood!"
+      </h4>
     </div>
+
+    {/* Right Section - Image */}
+    <div className="about-right  flex flex-wrap flex-col justify-center items-center overflow-y-hidden">
+      <img src={burgerFoodImage} alt="Delicious Burger" className="w-[500px] max-[320px]:w-[170px] max-[350px]:w-[220px] max-[470px]:w-[250px] max-[650px]:w-[300px] max-[950px]:w-[330px] max-[1150px]:w-[380px] h-auto rounded-md" />
+    </div>
+  </div>
+</div>
+
+      
     )
 }
 

@@ -52,7 +52,7 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />, // This renders only the Login page without the App layout
-  },  
+  },
 
 ])
 

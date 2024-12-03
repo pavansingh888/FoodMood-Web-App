@@ -16,7 +16,7 @@ const Header = () => {
   // console.log(UserData );//{loggedInUser: 'Default User'}
 
     return (
-      <div className='header flex justify-between items-center py-4 px-4 bg-teal-500 dark:bg-gray-800 shadow-md dark:shadow-lg'>
+      <div className='header flex justify-between items-center py-2 px-3 bg-teal-500 dark:bg-gray-800 shadow-md dark:shadow-lg overflow-hidden'>
         <div className='logo h-20 w-20 overflow-hidden rounded-full bg-gray-200 flex items-center justify-center'>
           <img className="logoimg h-full w-full object-cover" src={LOGO_URL}/>
         </div>
