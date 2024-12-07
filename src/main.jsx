@@ -4,7 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import Error from './components/Error'
-import Contact from './components/Contact'
 import About from './components/About'
 import Body from './components/Body'
 import RestaurantMenu from './components/RestaurantMenu.jsx'
@@ -13,7 +12,7 @@ import Cart from './components/Cart.jsx'
 import Login from './components/Login.jsx'
 // import Instamart from './components/Instamart.jsx' //Instead of this we do lazy loading/ On Demad loading
 
-const Instamart = lazy(() => {return import('./components/Instamart.jsx')})
+const Contact = lazy(() => {return import('./components/Contact')})
 
 const router = createBrowserRouter([
   {
@@ -25,17 +24,17 @@ const router = createBrowserRouter([
         path:'/',
         element:<Body/>,
       },
-      {
-        path: '/contact',
-        element: <Contact/>,
-      },
+      // {
+      //   path: '/contact',
+      //   element: <Contact/>,
+      // },
       {
         path: '/about',
         element: <About/>,
       },
       {
-        path: '/instamart',
-        element: <Suspense fallback={<h1>Loading...</h1>}><Instamart/></Suspense>,
+        path: '/contact',
+        element: <Suspense fallback={<h1>Loading...</h1>}><Contact/></Suspense>,
       },
       {
         path:'/restaurant/:resId', //resId is dynamic and can be changed according to the id of the restuarant

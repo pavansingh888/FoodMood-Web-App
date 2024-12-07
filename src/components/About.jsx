@@ -4,17 +4,17 @@ import burgerFoodImage from '../assets/images/burgerFoodImage.png'
 const About = () => {
 
     return (
-        <div className="about-container-main w-full min-h-[84vh]  bg-gray-900 dark:bg-gray-900 p-12">
+        <div className="about-container-main w-full min-h-[84vh]  bg-gray-900 dark:bg-gray-900 p-6">
   <div className="about-container dark:bg-gray-900 mt-[50px] mb-[10px] mx-[25px]  flex  flex-col min-[792px]:flex-row justify-evenly items-center">
     
    {/* Left Section */}
    <div className="about-left flex flex-wrap flex-col justify-start items-start overflow-y-hidden font-sans max-[880px]:mb-[20px] ">
-      <h1 className="text-7xl dark:text-white max-[320px]:text-[22px] max-[350px]:text-[25px] max-[470px]:text-[35px] max-[950px]:text-[45px] max-[1150px]:text-[50px]">
+      <h1 className="leading-tight text-7xl dark:text-white max-[320px]:text-[22px] max-[350px]:text-[25px] max-[470px]:text-[35px] max-[950px]:text-[45px] max-[1150px]:text-[50px]">
         Welcome to  
         <br /> 
         The world of 
         <br /> 
-        <span className="bg-orange-500 px-[10px] rounded-[15px]">Fresh and Delicious Food</span>
+        <span className="bg-orange-500 px-[10px] mt-2 rounded-2xl">Fresh & Delicious Food</span>
       </h1>
       <h4 className="italic text-[25px] mt-[10px] text-white max-[320px]:text-[8px] max-[350px]:text-[10px] max-[470px]:text-[12px] max-[950px]:text-[18px] max-[1150px]:text-[20px]   ">
         "Food<span className='text-red-500 dark:text-orange-500'>Mood</span> - Good Food, Good Mood!"

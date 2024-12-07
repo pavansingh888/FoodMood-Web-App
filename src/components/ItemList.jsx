@@ -1,5 +1,5 @@
 import React from 'react'
-import { CDN_URL, LOGO_URL } from '../utils/constants';
+import { CDN_URL } from '../utils/constants';
 import { useDispatch } from 'react-redux';
 //3. import that action from cartSlice that you want to dispatch
 import { addItem } from '../utils/cartSlice';
@@ -31,7 +31,7 @@ function ItemList({items}) {
 
            {/* div for image */}
            <div className='max-w-20 h-auto mr-3 my-2'>
-            {item?.card?.info?.imageId ?  <img src={CDN_URL + item?.card?.info?.imageId} className='rounded-lg'/> : <img src={LOGO_URL} className='rounded-lg'/> }  
+            {item?.card?.info?.imageId ?  <img src={CDN_URL + item?.card?.info?.imageId} className='rounded-lg'/> : <img src='../assets/images/FMLogo.jpg' className='rounded-lg'/> }  
            </div>
            
            {/* div for item name price and description */}
