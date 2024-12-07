@@ -4,7 +4,7 @@ import burgerFoodImage from '../assets/images/burgerFoodImage.png'
 const About = () => {
 
     return (
-        <div className="about-container-main w-full min-h-[84vh]  bg-gray-900 dark:bg-gray-900 p-6">
+        <div className="about-container-main w-full min-h-[84vh] bg-gray-200 dark:bg-gray-900 p-6">
   <div className="about-container dark:bg-gray-900 mt-[50px] mb-[10px] mx-[25px]  flex  flex-col min-[792px]:flex-row justify-evenly items-center">
     
    {/* Left Section */}
@@ -16,7 +16,7 @@ const About = () => {
         <br /> 
         <span className="bg-orange-500 px-[10px] mt-2 rounded-2xl">Fresh & Delicious Food</span>
       </h1>
-      <h4 className="italic text-[25px] mt-[10px] text-white max-[320px]:text-[8px] max-[350px]:text-[10px] max-[470px]:text-[12px] max-[950px]:text-[18px] max-[1150px]:text-[20px]   ">
+      <h4 className="italic text-[25px] mt-[10px] dark:text-white max-[320px]:text-[8px] max-[350px]:text-[10px] max-[470px]:text-[12px] max-[950px]:text-[18px] max-[1150px]:text-[20px]   ">
         "Food<span className='text-red-500 dark:text-orange-500'>Mood</span> - Good Food, Good Mood!"
       </h4>
     </div>

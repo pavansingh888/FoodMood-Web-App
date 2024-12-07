@@ -44,7 +44,7 @@ function Contact() {
         <input type="text" placeholder="Name" required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline outline-1 focus:outline-orange-600 '/>
         <input type="email" placeholder="Email" required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline focus:outline-orange-600 outline-1'/>
         <textarea placeholder="Type your Message here..." required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline focus:outline-orange-600 outline-1'></textarea>
-        <button type="submit" className='my-3 py-3 px-2 mx-2 w-full bg-orange-500 rounded-lg text-xl hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500' >Submit</button>
+        <button type="submit" className='my-3 py-3 px-2 mx-2 w-full bg-orange-500 rounded-lg text-base hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500' >Submit</button>
         {submitStatus && <span className='form-notification'>Please contact me on Linkedin. Thankyou for visiting!</span> }
 
         </form>

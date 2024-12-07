@@ -17,8 +17,8 @@ const Header = () => {
 
     return (
       <div className='header flex justify-between items-center bg-teal-500 dark:bg-gray-800 shadow-md dark:shadow-lg overflow-hidden h-[80px] max-[350px]:h-[50px] max-[470px]:h-[60px] max-[650px]:h-[70px]'>
-        <div className='logo py-[10px] pl-[15px] bg-gray-800 flex items-center '>
-          <img className="logoimg  w-10 h-10 rounded-full " src={Logo} alt="FoodMood" title="FoodMood"/>  
+        <div className='logo py-[10px] pl-[15px] dark:bg-gray-800 flex items-center '>
+          <img className="logoimg w-10 h-10 rounded-full " src={Logo} alt="FoodMood" title="FoodMood"/>  
         </div>
         <div className='nav-items flex space-x-0 mr-[30px]'>
            <Link to={'/'}><button className="nav-btns p-[10px] font-bold text-[16px] max-[320px]:text-[10px] max-[470px]:text-[13px] max-[470px]:p-[6px] hover:bg-orange-600 text-white rounded-md dark:hover:bg-orange-600">Home</button></Link>

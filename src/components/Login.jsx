@@ -35,14 +35,14 @@ function Login(){
 
 
     return (<div className='loginPage min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800' >
-        <div className='loginFormDiv w-full max-w-md p-8 space-y-4 bg-white dark:bg-gray-900 shadow-lg rounded-lg'>
+        <div className='loginFormDiv w-full max-w-md p-8 mx-8 space-y-4 bg-white dark:bg-gray-900 shadow-lg rounded-lg'>
 
             <h2 className='heading text-2xl font-bold text-center text-grey-900 dark:text-white'>Login</h2>
             {error && <div className='error text-red-500 text-sm'>{error}</div>}
 
             <form className='form space-y-4' onSubmit={handleSubmit}>
                 <div>
-                    <label className='form block text-sm text-gray-700 dark:text-gray-300'>Email: </label>
+                    <label className='form block text-base text-gray-700 dark:text-gray-300'>Email: </label>
                     <input 
                     type="email" 
                     value={email}
@@ -50,14 +50,14 @@ function Login(){
                     className='w-full px-4 py-2 mt-1 border rounded-lg dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500' ></input>
                 </div>
                 <div>
-                    <label className='form block text-sm text-gray-700 dark:text-gray-300'>Password: </label>
+                    <label className='form block text-base text-gray-700 dark:text-gray-300'>Password: </label>
                     <input 
                     type="password"
                     value={password}
                     onChange={(e)=>{setPassword(e.target.value)}} 
                     className='w-full px-4 py-2 mt-1 border rounded-lg dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500'></input>
                 </div>
-                <button type="submit" className='w-full px-4 py-2 text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none'>Login</button>
+                <button type="submit" className='w-full px-4 py-2 text-base text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none'>Login</button>
             </form>
         </div>
     </div>)
