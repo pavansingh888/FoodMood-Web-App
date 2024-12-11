@@ -4,11 +4,14 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 import Logo from "../assets/images/FMLogo.jpg"
+import useTotalCartItems from "../utils/useTotalCartItems";
 
 const Header = () => {
   //Subscribing to store using selector - useSelector() gives access to our whole store, and we access part of the store. we need to tell it what part of store we need access to. (store.SliceName.StateValueNamePresentInThatSliceStateObject)
-   const cartItems = useSelector((store) => store.cart.items); //Here cartItems will be value of items which is an empty array for now.
+  //  const cartItems = useSelector((store) => store.cart.items); //Here cartItems will be value of items which is an empty array for now.
   // console.log(cartItems);
+
+  const totalCartItems = useTotalCartItems();
 
   const [loginBtnName,setLoginBtnName] = useState("Login")
   const onlineStatus = useOnlineStatus()
@@ -27,7 +30,7 @@ const Header = () => {
                
            {/* Cart */}
            <Link to={'/cart'} className="cart hover:bg-orange-600 text-white rounded-md   dark:hover:bg-orange-600 text-[16px] max-[320px]:text-[10px] max-[470px]:text-[13px] py-[10px] pl-[14px] pr-[5px] max-[470px]:p-[6px] md:text-base lg:text-lg">
-           <i className="fa badge fa-l" value='8'>&#xf07a;</i>
+           <i className="fa badge fa-l" value={totalCartItems}>&#xf07a;</i>
            </Link>
            
          

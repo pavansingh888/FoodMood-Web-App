@@ -8,9 +8,9 @@ function Contact() {
      setSubmitStatus(true)
   }
   return (
-    <div className='contact-container-main w-full dark:bg-gray-900 dark:text-white min-h-[84vh] flex flex-wrap justify-evenly items-center text-center'>
+    <div className='contact-container-main w-full bg-gray-200 dark:bg-gray-900 dark:text-white min-h-[84vh] flex flex-wrap justify-evenly items-center text-center'>
 
-     <div className='contact-profile m-5 py-5 px-2 flex flex-col justify-evenly items-center'>
+     <div className='contact-profile m-5 py-5 px-2 flex flex-col justify-evenly items-center bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg'>
       
       <h1 className='text-center text-2xl'>About Me</h1>
 

@@ -12,11 +12,34 @@ const cartSlice = createSlice({
     reducers:{
        addItem: (state,action) => {
         //mutating the state(existing state) over here.'state' points to the initialState object which is a copy of initialState that immer uses to compare it with initialState stored in store.
-            state.items.push(action.payload);
+        const item = state.items.find((item) => item.card.info.id === action.payload.item.card.info.id )   
+        if(!item){
+            state.items.push({...action.payload.item, quantity:1});
+        }else{
+            item.quantity+=1;
+        }
+           
        },
-       removeItem: (state) => {
-            state.items.pop();
+       removeItem: (state,action) => {
+            state.items = state.items.filter((item) => item.card.info.id !== action.payload.id);
        },
+       incrementQuantity: (state,action) => {
+        const item = state.items.find((item) => item.card.info.id === action.payload.id );
+        if(item){
+            item.quantity += 1;
+        }
+       },
+       decrementQuantity: (state,action) => {
+        const item = state.items.find((item) => item.card.info.id === action.payload.id );
+        if(item){
+            if(item.quantity > 1){
+                item.quantity -= 1;
+            }else{
+                state.items = state.items.filter((item) => item.card.info.id !== item.card.info.id )
+            }
+        }
+       },
+
        clearCart: (state) => {
             state.items.length = 0;
        }
@@ -38,6 +61,6 @@ const cartSlice = createSlice({
  */
 
 //Export 2 things: actions and reducers
-export const {addItem,removeItem,clearCart} = cartSlice.actions; //exporting actions of cartSlice, here we are taking them out and then exporting.
+export const {addItem,removeItem,incrementQuantity,decrementQuantity,clearCart} = cartSlice.actions; //exporting actions of cartSlice, here we are taking them out and then exporting.
 export default cartSlice.reducer; //this how we export the reducer of cartSlice
 
