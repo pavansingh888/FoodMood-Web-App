@@ -4,7 +4,7 @@ import burgerFoodImage from '../assets/images/burgerFoodImage.png'
 const About = () => {
 
     return (
-        <div className="about-container-main w-full min-h-[84vh] bg-gray-200 dark:bg-gray-900 p-6">
+        <div className="about-container-main w-full min-h-[84vh] bg-gray-100 dark:bg-gray-900 p-6">
   <div className="about-container dark:bg-gray-900 mt-[50px] mb-[10px] mx-[25px]  flex  flex-col min-[792px]:flex-row justify-evenly items-center">
     
    {/* Left Section */}

@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import Item from './Item';
 
 function RestaurantCategory({data, showItems, setShowIndex}) {
-//    const [showItems, setShowItems] = useState(false);
+   const [expandedId, setExpandedId] = useState(null);
    const handleClick = () => {
         setShowIndex();
+    }
+    const toggleDescription = (id) => {
+      console.log(id);
+      setExpandedId((prevState) => prevState === id ? null : id)
     }
     
   return (
@@ -20,7 +24,12 @@ function RestaurantCategory({data, showItems, setShowIndex}) {
           (<div>
             {
             data.itemCards.map((item) => (
-            <Item key={item.card.info.id} item={item}/>
+            <Item 
+            key={item.card.info.id} 
+            item={item}
+            isExpanded = {expandedId === item.card.info.id}
+            toggleDescription={toggleDescription}
+            />
             ))
             }
         </div>)}
