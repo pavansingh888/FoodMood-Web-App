@@ -42,7 +42,7 @@ const Item = ({item, isExpanded, toggleDescription}) => {
 
 
     return (
-        <div key={itemId} className='flex justify-between py-2 border-b-[1px]'>
+        <div key={itemId} className='flex justify-between py-2 mx-6 border-b-[1px]'>
 
           {/* div for both image div and item description div */}
            
@@ -51,7 +51,7 @@ const Item = ({item, isExpanded, toggleDescription}) => {
             <span className='text-base font-medium'>{item?.card?.info?.name}</span>
             <p className='text-sm font-medium max-w-96 '>₹ { item?.card?.info?.price/100 ? item?.card?.info?.price/100 : item?.card?.info?.defaultPrice/100 }</p> 
             {
-            isExpanded ? 
+            item?.card?.info?.description && (isExpanded ? 
             (<p className='text-xs'>
                 {item?.card?.info?.description}{" "}
                 <span 
@@ -61,13 +61,14 @@ const Item = ({item, isExpanded, toggleDescription}) => {
                 </span>
             </p> ) : 
             (<p className='text-xs'>
-                {item?.card?.info?.description.slice(0,80)}...{" "}
+                {item?.card?.info?.description?.slice(0,80)}...{" "}
                 <span 
                 className="cursor-pointer font-semibold"
                 onClick={()=>toggleDescription(itemId)}>
                     More
                 </span>
             </p>)
+            )
             }
 
            </div>

@@ -19,7 +19,7 @@ const Header = () => {
   // console.log(UserData );//{loggedInUser: 'Default User'}
 
     return (
-      <div className='header flex justify-between items-center bg-teal-500 dark:bg-gray-800 shadow-md dark:shadow-lg overflow-hidden h-[80px] max-[350px]:h-[50px] max-[470px]:h-[60px] max-[650px]:h-[70px]'>
+      <div className='header flex justify-between items-center bg-teal-500 dark:bg-gray-800 shadow-md dark:shadow-lg overflow-hidden h-[80px] max-[350px]:h-[50px] max-[470px]:h-[60px] max-[650px]:h-[70px] sticky top-0 z-20'>
         <div className='logo py-[10px] pl-[15px] dark:bg-gray-800 flex items-center '>
           <img className="logoimg w-10 h-10 rounded-full " src={Logo} alt="FoodMood" title="FoodMood"/>  
         </div>
