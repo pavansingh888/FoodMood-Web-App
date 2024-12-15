@@ -6,8 +6,8 @@ const cartSlice = createSlice({
     //2-initialState, what initially this cartSlice will be. basically what will be the cart items.(right now we can give items:[] empty array, cart is empty)
     initialState: {
         items:[],
-        currentRestaurant:{},
-        currentCartRestaurant:{}
+        currentRestaurantInfo:{},
+        currentCartRestaurantInfo:{}
     },
     //3-reducers,inside this we will write reducer functions corresponding to required actions for this cartSlice. Actions can be add item, remove item, clear cart. These thing are actions(kind of like an API to communicate with a redux store). To add item, we will dispatch the addItem. So addItem is an action and it have a reducer function attached to it and it(attached reducer function) actually modifies the data into our Slice. 
     // The reducer function gets access to the 'state' of the Slice, and it also gets access to 'action'. Now it will modify 'state' according to 'action'. 'state' is basically the 'initialState'.
@@ -44,7 +44,21 @@ const cartSlice = createSlice({
 
        clearCart: (state) => {
             state.items.length = 0;
+       },
+
+
+       updateCurrentRestaurantInfo: (state,action) => {
+       state.currentRestaurantInfo = action.payload.currentRestaurantInfo;
+       },
+
+       clearCurrentRestaurantInfo: (state) => {
+        state.currentRestaurantInfo={}
+       },
+
+       updateCurrentCartRestaurantInfo: (state,action)=>{
+        state.currentCartRestaurantInfo = action.payload.currentRestaurantInfo;
        }
+
     }
 })
 /*
@@ -63,6 +77,6 @@ const cartSlice = createSlice({
  */
 
 //Export 2 things: actions and reducers
-export const {addItem,removeItem,incrementQuantity,decrementQuantity,clearCart} = cartSlice.actions; //exporting actions of cartSlice, here we are taking them out and then exporting.
+export const {addItem,removeItem,incrementQuantity,decrementQuantity,clearCart,updateCurrentRestaurantInfo,clearCurrentRestaurantInfo,updateCurrentCartRestaurantInfo} = cartSlice.actions; //exporting actions of cartSlice, here we are taking them out and then exporting.
 export default cartSlice.reducer; //this how we export the reducer of cartSlice
 

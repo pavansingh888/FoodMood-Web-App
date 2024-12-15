@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 
 function Contact() {
   const [submitStatus, setSubmitStatus] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = (e) => {
      e.preventDefault();

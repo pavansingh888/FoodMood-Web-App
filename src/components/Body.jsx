@@ -63,6 +63,7 @@ const Body = () => {
   }, [searchInput]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchRestaurant();
   }, []);
 

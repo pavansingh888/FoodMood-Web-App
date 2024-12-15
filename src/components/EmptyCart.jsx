@@ -1,10 +1,14 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import lightEmptyImage from "../assets/images/lightEmptyCart.jpg";
 import darkEmptyImage from "../assets/images/darkEmptyImage.jpg";
 
 const EmptyCart = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">

@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import burgerFoodImage from '../assets/images/burgerFoodImage.png'
 
 const About = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
     return (
         <div className="about-container-main w-full min-h-[84vh] bg-gray-100 dark:bg-gray-900 p-6">
