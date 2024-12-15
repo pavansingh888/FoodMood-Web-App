@@ -11,7 +11,7 @@ const Header = () => {
   //  const cartItems = useSelector((store) => store.cart.items); //Here cartItems will be value of items which is an empty array for now.
   // console.log(cartItems);
 
-  const totalCartItems = useTotalCartItems();
+  const [totalCartItems] = useTotalCartItems();
 
   const [loginBtnName,setLoginBtnName] = useState("Login")
   const onlineStatus = useOnlineStatus()

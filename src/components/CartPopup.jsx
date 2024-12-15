@@ -11,7 +11,7 @@ const CartPopup = () => {
   const isMenuPage = location.pathname.startsWith("/restaurant/");
 
   // Calculate total items in the cart
-  const totalItems = useTotalCartItems();
+  const [totalItems] = useTotalCartItems();
 
   if (!isMenuPage || totalItems === 0) return null; // Hide if not on menu page or cart is empty
 

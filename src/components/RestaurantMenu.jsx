@@ -13,7 +13,7 @@ function RestaurantMenu() {
 
 
     const resMenu = useRestaurantMenu(resId); //Implementing Single responsibility of RestaurantMenu.jsx -Using Custom hook to fetch Res-Menu data.
-    // console.log(resMenu);
+    console.log(resMenu);
 
     if(resMenu===null) return (<ShimmerCard/>)
 

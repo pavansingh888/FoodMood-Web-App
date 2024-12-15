@@ -2,11 +2,24 @@ import React, { useState } from "react";
 import Item from "./Item";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../utils/cartSlice";
+import useTotalCartItems from "../utils/useTotalCartItems";
+import { PLATFORM_FEE, PACKAGING_CHARGE } from "../utils/constants";
+import EmptyCart from "./EmptyCart";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
   const [isNoContact, setIsNoContact] = useState(false);
+  const [,totalPrice] = useTotalCartItems();
+  const gstAndRestaurantCharges = PACKAGING_CHARGE + Math.round(totalPrice*18)/100 + Math.round(PLATFORM_FEE*18)/100;
+  const toPayAmount = totalPrice + PLATFORM_FEE + gstAndRestaurantCharges;
+
+  
+  if(cartItems.length===0){
+    return (
+      <EmptyCart/>
+    )
+  }
 
   return (
     <div className="h-full min-h-screen bg-gray-200 dark:bg-gray-900 dark:text-white flex max-[470px]:flex-col-reverse items-start justify-center ">
@@ -73,7 +86,7 @@ function Cart() {
           <div className="text-[13px] font-[510] text-[#282c3f] my-[10px] mx-6 opacity-70 flex justify-between">
             Item Total{" "}
             <span className="text-green-700 font-[510] text-[13px] opacity-100">
-              637
+              {totalPrice}
             </span>
           </div>
           {/* border div */}
@@ -104,7 +117,7 @@ function Cart() {
                 </div>
               </div>
             </div>
-            <span className="font-[510] text-[13px] opacity-100">{"₹ "}3</span>
+            <span className="font-[510] text-[13px] opacity-100">{"₹ "+PLATFORM_FEE}</span>
           </div>
 
           {/* GST and Restaurant Charges with info button */}
@@ -122,8 +135,8 @@ function Cart() {
                 >
                   <path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 25 11 A 3 3 0 0 0 22 14 A 3 3 0 0 0 25 17 A 3 3 0 0 0 28 14 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 22 23 L 23 23 L 23 36 L 22 36 L 21 36 L 21 38 L 22 38 L 23 38 L 27 38 L 28 38 L 29 38 L 29 36 L 28 36 L 27 36 L 27 21 L 26 21 L 22 21 L 21 21 z"></path>
                 </svg>
-                <div className="absolute left-[-50px] bottom-full mb-2 w-[220px] bg-gray-100 text-black text-[12px] rounded-md px-3 py-2 shadow-md opacity-0 hidden group-hover:opacity-100  group-hover:block group-hover:translate-y-0 transition-transform duration-200 translate-y-1">
-                  <p>
+                <div className="absolute left-[-70px] bottom-full mb-2 w-[220px] bg-gray-100 text-black text-[12px] rounded-md px-3 py-2 shadow-md opacity-0 hidden group-hover:opacity-100  group-hover:block group-hover:translate-y-0 transition-transform duration-200 translate-y-1">
+                  <div>
                     <span className="font-semibold">
                       GST and Restaurant Charges
                     </span>
@@ -131,27 +144,27 @@ function Cart() {
                     <div className="flex justify-between items-center">
                     Restaurant Packaging
                     <span className="font-[510] text-[12px] opacity-100">
-                      {"₹ "}53
+                      {"₹ "+PACKAGING_CHARGE}
                     </span> 
                     </div>
                     <div className="flex justify-between items-center">
                     Restaurant GST
                     <span className="font-[510] text-[12px] opacity-100">
-                      {"₹ "}98
+                      {"₹ "+Math.round(totalPrice*18)/100}
                     </span> 
                     </div>
                     <div className="flex justify-between items-center">
                     GST on Platform fee 
                     <span className="font-[510] text-[12px] opacity-100">
-                      {"₹ "}57
+                      {"₹ "+Math.round(PLATFORM_FEE*18)/100}
                     </span> 
                     </div>
                     
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
-            <span className="font-[510] text-[13px] opacity-100">{"₹ "}3</span>
+            <span className="font-[510] text-[13px] opacity-100">{"₹ "+Math.round(gstAndRestaurantCharges*100)/100}</span>
           </div>
           {/* Bottom dark border Div */}
           <div className="border-b-[2px] mt-[17px] mx-6 border-black"></div>
@@ -159,7 +172,7 @@ function Cart() {
 
         <div className="total-price-container flex items-center justify-between text-md px-8 h-16 font-semibold">
           <span className="tracking-wider">TO PAY</span>
-          <span className="tracking-normal">{"₹ "}2637</span>
+          <span className="tracking-normal">{"₹ "+toPayAmount}</span>
         </div>
 
         <div className="cart-container my-2 mx-6 p-2 bg-gray-100 dark:bg-gray-800   border-[1px] border-gray-300">
