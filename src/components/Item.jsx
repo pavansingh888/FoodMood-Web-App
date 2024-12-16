@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import FMLogo from "../assets/images/FMLogo.jpg";
 
 const Item = ({
   item,
@@ -57,14 +58,14 @@ const Item = ({
       {/* div for add button & Img both */}
       <div className="flex flex-col justify-self-stretch max-[425px]:items-center ">
         {/* div for image */}
-        <div className="w-[100px] h-auto mx-auto py-2">
+        <div className="mx-auto py-2">
           {item?.card?.info?.imageId ? (
             <img
               src={CDN_URL + item?.card?.info?.imageId}
-              className="rounded-lg"
+              className="rounded-lg w-[100px] h-[80px] object-cover"
             />
           ) : (
-            <img src="../assets/images/FMLogo.jpg" className="rounded-lg" />
+            <img src={FMLogo} className="rounded-lg w-[100px] h-[80px] object-cover" />
           )}
         </div>
         {/* div for add button */}
