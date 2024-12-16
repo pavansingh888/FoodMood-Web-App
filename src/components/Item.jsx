@@ -1,69 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CDN_URL } from "../utils/constants";
-//3. import that action from cartSlice that you want to dispatch
-import {
-  addItem,
-  incrementQuantity,
-  decrementQuantity,
-  removeItem,
-  updateCurrentCartRestaurantInfo,
-
-} from "../utils/cartSlice";
 
 const Item = ({
   item,
-  resId,
-  currentCartRestaurantInfo,
-  currentRestaurantInfo,
-  isDifferentRestaurant,
-  setIsDifferentRestaurant,
   isExpanded,
   toggleDescription,
+  handleIncrease,
+  handleDecrease,
+  handleAddItem,
 }) => {
   const itemId = item.card.info.id;
-  // console.log(item);
-  //2.we will get from useDispatch() hook given by 'react-redux'.
-  const dispatch = useDispatch();
+
   const cartItem = useSelector((store) =>
     store.cart.items.find((cartItem) => cartItem.card.info.id === itemId)
   );
   const quantity = cartItem ? cartItem.quantity : 0;
-
-  const handleAddItem = () => {
-    //1.On click of button we will dispatch an action with 'item' that we get from  items.map((item)=>{}) in JSX to add it in items array of cartSlice in our store. for that we will need access to dispatch
-    // dispatch(addItem("pasta"))
-    //4.When we dispatch, redux will create object like (not exactly): And this object will action. So that we can access it as action.payload
-    /*
-     * {
-     *  payload:"pizza",
-     * }
-     */
-    if (
-      Object.keys(currentCartRestaurantInfo).length === 0 ||
-      resId === currentCartRestaurantInfo?.id
-    ) {
-      dispatch(addItem({ item }));
-      if(Object.keys(currentCartRestaurantInfo).length === 0){
-        dispatch(updateCurrentCartRestaurantInfo({currentRestaurantInfo}));
-      }
-    } else {
-      setIsDifferentRestaurant(true)
-      console.log(isDifferentRestaurant);      
-    }
-  };
-
-  const handleIncrease = () => {
-    dispatch(incrementQuantity({ id: itemId }));
-  };
-
-  const handleDecrease = () => {
-    if (quantity > 1) {
-      dispatch(decrementQuantity({ id: itemId }));
-    } else {
-      dispatch(removeItem({ id: itemId }));
-    }
-  };
 
   return (
     <div key={itemId} className="flex justify-between py-2 mx-6 border-b-[1px]">
@@ -120,7 +72,7 @@ const Item = ({
         {quantity === 0 ? (
           <div>
             <button
-              onClick={handleAddItem}
+              onClick={() => handleAddItem(item ,false )}
               className="bg-teal-500 hover:bg-teal-600 text-white font-bold w-[110px] py-2 uppercase text-center rounded-lg transition duration-100 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-orange-400 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-orange-500 flex items-center justify-center"
             >
               Add
@@ -129,14 +81,14 @@ const Item = ({
         ) : (
           <div className="bg-teal-500  text-white font-bold w-[110px]  uppercase text-center rounded-lg transition duration-100 ease-in-out shadow-md focus:outline-none focus:ring-2 focus:ring-orange-400 dark:bg-teal-600 dark:focus:ring-orange-500 flex items-center justify-between overflow-hidden">
             <button
-              onClick={handleDecrease}
+              onClick={() => handleDecrease(itemId, quantity)}
               className="hover:bg-teal-600 dark:hover:bg-teal-700  py-2 px-4"
             >
               -
             </button>
             <span className="mx-auto">{quantity}</span>
             <button
-              onClick={handleIncrease}
+              onClick={() => handleIncrease(itemId)}
               className="hover:bg-teal-600 dark:hover:bg-teal-700  py-2 px-4"
             >
               +

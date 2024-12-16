@@ -1,25 +1,43 @@
 import React, { useState } from "react";
 import Item from "./Item";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../utils/cartSlice";
 import useTotalCartItems from "../utils/useTotalCartItems";
 import { PLATFORM_FEE, PACKAGING_CHARGE } from "../utils/constants";
 import EmptyCart from "./EmptyCart";
+import {
+  incrementQuantity,
+  decrementQuantity,
+  removeItem,
+  clearCart,
+} from "../utils/cartSlice";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
+
+  if (cartItems.length === 0) {
+    return <EmptyCart />;
+  }
+
   const dispatch = useDispatch();
   const [isNoContact, setIsNoContact] = useState(false);
-  const [,totalPrice] = useTotalCartItems();
-  const gstAndRestaurantCharges = PACKAGING_CHARGE + Math.round(totalPrice*18)/100 + Math.round(PLATFORM_FEE*18)/100;
+  const [, totalPrice] = useTotalCartItems();
+  const gstAndRestaurantCharges =
+    PACKAGING_CHARGE +
+    Math.round(totalPrice * 18) / 100 +
+    Math.round(PLATFORM_FEE * 18) / 100;
   const toPayAmount = totalPrice + PLATFORM_FEE + gstAndRestaurantCharges;
 
-  
-  if(cartItems.length===0){
-    return (
-      <EmptyCart/>
-    )
-  }
+  const handleIncrease = (itemId) => {
+    dispatch(incrementQuantity({ id: itemId }));
+  };
+
+  const handleDecrease = (itemId, quantity) => {
+    if (quantity > 1) {
+      dispatch(decrementQuantity({ id: itemId }));
+    } else {
+      dispatch(removeItem({ id: itemId }));
+    }
+  };
 
   return (
     <div className="h-full min-h-screen bg-gray-200 dark:bg-gray-900 dark:text-white flex max-[470px]:flex-col-reverse items-start justify-center ">
@@ -39,7 +57,12 @@ function Cart() {
         {/* Cart Items list */}
         <div className="cart-container-items pt-4 bg-gray-100 dark:bg-gray-900 rounded-lg max-h-[450px] overflow-y-auto">
           {cartItems.map((item) => (
-            <Item key={item.card.info.id} item={item}  />
+            <Item 
+            key={item.card.info.id} 
+            item={item}
+            handleIncrease={handleIncrease}
+            handleDecrease={handleDecrease}
+            />
           ))}
 
           {/* nocontact-delivery-check */}
@@ -117,7 +140,9 @@ function Cart() {
                 </div>
               </div>
             </div>
-            <span className="font-[510] text-[13px] opacity-100">{"₹ "+PLATFORM_FEE}</span>
+            <span className="font-[510] text-[13px] opacity-100">
+              {"₹ " + PLATFORM_FEE}
+            </span>
           </div>
 
           {/* GST and Restaurant Charges with info button */}
@@ -142,29 +167,30 @@ function Cart() {
                     </span>
                     <br />
                     <div className="flex justify-between items-center">
-                    Restaurant Packaging
-                    <span className="font-[510] text-[12px] opacity-100">
-                      {"₹ "+PACKAGING_CHARGE}
-                    </span> 
+                      Restaurant Packaging
+                      <span className="font-[510] text-[12px] opacity-100">
+                        {"₹ " + PACKAGING_CHARGE}
+                      </span>
                     </div>
                     <div className="flex justify-between items-center">
-                    Restaurant GST
-                    <span className="font-[510] text-[12px] opacity-100">
-                      {"₹ "+Math.round(totalPrice*18)/100}
-                    </span> 
+                      Restaurant GST
+                      <span className="font-[510] text-[12px] opacity-100">
+                        {"₹ " + Math.round(totalPrice * 18) / 100}
+                      </span>
                     </div>
                     <div className="flex justify-between items-center">
-                    GST on Platform fee 
-                    <span className="font-[510] text-[12px] opacity-100">
-                      {"₹ "+Math.round(PLATFORM_FEE*18)/100}
-                    </span> 
+                      GST on Platform fee
+                      <span className="font-[510] text-[12px] opacity-100">
+                        {"₹ " + Math.round(PLATFORM_FEE * 18) / 100}
+                      </span>
                     </div>
-                    
                   </div>
                 </div>
               </div>
             </div>
-            <span className="font-[510] text-[13px] opacity-100">{"₹ "+Math.round(gstAndRestaurantCharges*100)/100}</span>
+            <span className="font-[510] text-[13px] opacity-100">
+              {"₹ " + Math.round(gstAndRestaurantCharges * 100) / 100}
+            </span>
           </div>
           {/* Bottom dark border Div */}
           <div className="border-b-[2px] mt-[17px] mx-6 border-black"></div>
@@ -172,23 +198,28 @@ function Cart() {
 
         <div className="total-price-container flex items-center justify-between text-md px-8 h-16 font-semibold">
           <span className="tracking-wider">TO PAY</span>
-          <span className="tracking-normal">{"₹ "+toPayAmount}</span>
+          <span className="tracking-normal">{"₹ " + toPayAmount}</span>
         </div>
 
         <div className="cart-container my-2 mx-6 p-2 bg-gray-100 dark:bg-gray-800   border-[1px] border-gray-300">
           <div className="p-4 text-[#282c3f]">
-              <p className="font-semibold text-base pb-2">
-                Review your order and address<br/> 
-                details to avoid cancellations</p>
-              <p className="text-[13px]">
-                <strong>Note</strong><span className="font-[510] opacity-80">: Please ensure your address and order<br/> details are correct. This order, if cancelled, is non-<br/>refundable.</span>
-              </p>
+            <p className="font-semibold text-base pb-2">
+              Review your order and address
+              <br />
+              details to avoid cancellations
+            </p>
+            <p className="text-[13px]">
+              <strong>Note</strong>
+              <span className="font-[510] opacity-80">
+                : Please ensure your address and order
+                <br /> details are correct. This order, if cancelled, is non-
+                <br />
+                refundable.
+              </span>
+            </p>
           </div>
+        </div>
       </div>
-      </div>
-
-      
-
     </div>
   );
 }

@@ -57,8 +57,11 @@ const cartSlice = createSlice({
 
        updateCurrentCartRestaurantInfo: (state,action)=>{
         state.currentCartRestaurantInfo = action.payload.currentRestaurantInfo;
-       }
+       },
 
+       clearCurrentCartRestaurantInfo: (state) => {
+        state.currentCartRestaurantInfo={}
+       },
     }
 })
 /*
@@ -77,6 +80,6 @@ const cartSlice = createSlice({
  */
 
 //Export 2 things: actions and reducers
-export const {addItem,removeItem,incrementQuantity,decrementQuantity,clearCart,updateCurrentRestaurantInfo,clearCurrentRestaurantInfo,updateCurrentCartRestaurantInfo} = cartSlice.actions; //exporting actions of cartSlice, here we are taking them out and then exporting.
+export const {addItem,removeItem,incrementQuantity,decrementQuantity,clearCart,updateCurrentRestaurantInfo,clearCurrentRestaurantInfo,updateCurrentCartRestaurantInfo,clearCurrentCartRestaurantInfo} = cartSlice.actions; //exporting actions of cartSlice, here we are taking them out and then exporting.
 export default cartSlice.reducer; //this how we export the reducer of cartSlice
 

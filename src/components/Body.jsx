@@ -54,12 +54,6 @@ const Body = () => {
       data.info.name.toLowerCase().includes(searchInput.toLowerCase())
     );
     setrestaurantList(filteredData);
-    // // Attach keydown event listener
-    // window.addEventListener('keydown', handleKeyDown);
-    // return () => {
-    //   // Cleanup event listener on component unmount
-    //   window.removeEventListener('keydown', handleKeyDown);
-    // };
   }, [searchInput]);
 
   useEffect(() => {

@@ -3,13 +3,11 @@ import Item from "./Item";
 
 function RestaurantCategory({
   data,
-  resId,
-  currentCartRestaurantInfo,
-  currentRestaurantInfo,
-  isDifferentRestaurant,
-  setIsDifferentRestaurant,
   showItems,
   setShowIndex,
+  handleIncrease,
+  handleDecrease,
+  handleAddItem
 }) {
   const [expandedId, setExpandedId] = useState(null);
   const handleClick = () => {
@@ -36,14 +34,12 @@ function RestaurantCategory({
             {data.itemCards.map((item) => (
               <Item
                 key={item.card.info.id}
-                resId={resId}
-                currentCartRestaurantInfo={currentCartRestaurantInfo}
-                currentRestaurantInfo={currentRestaurantInfo}
-                isDifferentRestaurant={isDifferentRestaurant}
-                setIsDifferentRestaurant={setIsDifferentRestaurant}
                 item={item}
                 isExpanded={expandedId === item.card.info.id}
                 toggleDescription={toggleDescription}
+                handleIncrease={handleIncrease}
+                handleDecrease={handleDecrease}
+                handleAddItem={handleAddItem}
               />
             ))}
           </div>
