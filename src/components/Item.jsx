@@ -19,7 +19,7 @@ const Item = ({
   const quantity = cartItem ? cartItem.quantity : 0;
 
   return (
-    <div key={itemId} className="flex justify-between py-2 mx-6 border-b-[1px]">
+    <div key={itemId} className="flex justify-between py-2 mx-2 border-b-[1px]">
       {/* div for both image div and item description div */}
 
       {/* div for item name price and description */}

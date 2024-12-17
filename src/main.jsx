@@ -10,8 +10,7 @@ import RestaurantMenu from './components/RestaurantMenu.jsx'
 import ShimmerCard from './components/ShimmerCard.jsx'
 import Cart from './components/Cart.jsx'
 import Login from './components/Login.jsx'
-// import Instamart from './components/Instamart.jsx' //Instead of this we do lazy loading/ On Demad loading
-
+// import Contact from './components/Contact.jsx' //Instead of this we do lazy loading/ On Demad loading
 const Contact = lazy(() => {return import('./components/Contact')})
 
 const router = createBrowserRouter([
@@ -23,6 +22,7 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Body/>,
+        errorElement: <Error/>,   
       },
       // {
       //   path: '/contact',
@@ -31,18 +31,22 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About/>,
+        errorElement: <Error/>,   
       },
       {
         path: '/contact',
         element: <Suspense fallback={<h1>Loading...</h1>}><Contact/></Suspense>,
+        errorElement: <Error/>,   
       },
       {
         path:'/restaurant/:resId', //resId is dynamic and can be changed according to the id of the restuarant
-        element: <RestaurantMenu/>
+        element: <RestaurantMenu/>,
+        errorElement: <Error/>,   
       },
       {
         path:'/cart', //resId is dynamic and can be changed according to the id of the restuarant
-        element: <Cart/>
+        element: <Cart/>,
+        errorElement: <Error/>,   
       },
       
 

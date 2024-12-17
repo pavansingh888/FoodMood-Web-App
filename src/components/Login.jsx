@@ -9,7 +9,7 @@ function Login(){
    const navigate = useNavigate(); //initialize navigate
 
    const validateEmail = (email)=> {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/;
     return emailRegex.test(email);
    }
    const validatePassword = (password)=> {

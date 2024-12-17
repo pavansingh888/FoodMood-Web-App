@@ -12,7 +12,7 @@ function Error() {
         <img
           src={FMLogo}
           alt="Food App Logo"
-          className="w-24 h-24 md:w-32 md:h-32 object-cover"
+          className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-full"
         />
       </div>
 
@@ -25,7 +25,7 @@ function Error() {
           We're sorry for the inconvenience.
         </h2>
         <h2 className="text-lg md:text-xl font-medium">
-          {error.status}
+          {error?.status}
         </h2>
         <p className="mt-2 text-sm md:text-base">If you are experiencing this issue, please let us know by <a href="https://www.linkedin.com/in/-pavansingh" target="_blank" rel='noreferrer noopener' className="text-blue-500 hover:underline hover:dark:underline" ><i>clicking here.</i></a></p>
       </div>

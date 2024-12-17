@@ -31,7 +31,7 @@ const CartResetPopup = ({ showPopup, noResetHandler, setResetFlag}) => {
           {/* Yes Button */}
           <button
             onClick={setResetFlag}
-            className="bg-red-500 text-white px-4 py-2 w-[40%] rounded-md hover:bg-red-600"
+            className="bg-orange-500 text-white px-4 py-2 w-[40%] rounded-md hover:bg-orange-600"
           >
             Yes
           </button>
