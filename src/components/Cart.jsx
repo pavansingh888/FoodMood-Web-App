@@ -1,19 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Item from "./Item";
 import { useDispatch, useSelector } from "react-redux";
 import useTotalCartItems from "../utils/useTotalCartItems";
 import { PLATFORM_FEE, PACKAGING_CHARGE } from "../utils/constants";
 import EmptyCart from "./EmptyCart";
+import { CART_IMG_CDN_URL } from "../utils/constants";
 import {
   incrementQuantity,
   decrementQuantity,
   removeItem,
   clearCart,
-  clearCurrentCartRestaurantInfo
+  clearCurrentCartRestaurantInfo,
 } from "../utils/cartSlice";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
+  const areaName = useSelector(
+    (store) => store.cart.currentCartRestaurantInfo?.areaName
+  );
+  const cartRestaurantName = useSelector(
+    (store) => store.cart.currentCartRestaurantInfo?.name
+  );
+  const cartRestaurantCloudinaryImageId = useSelector(
+    (store) => store.cart.currentCartRestaurantInfo?.cloudinaryImageId
+  );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const dispatch = useDispatch();
   const [isNoContact, setIsNoContact] = useState(false);
@@ -36,10 +50,10 @@ function Cart() {
     }
   };
 
- const handleEmptyCart = () => {
-  dispatch(clearCart());
-  dispatch(clearCurrentCartRestaurantInfo());
-}
+  const handleEmptyCart = () => {
+    dispatch(clearCart());
+    dispatch(clearCurrentCartRestaurantInfo());
+  };
 
   if (cartItems.length === 0) {
     return <EmptyCart />;
@@ -50,24 +64,53 @@ function Cart() {
       {/* Cart Items Card */}
       <div className="cart-container max-w-[500px] mx-4 my-4 py-4 bg-gray-100 dark:bg-gray-800  shadow-lg">
         {/* Cart Heading */}
-        <div className="flex flex-col justify-center ">
-          <h1 className="font-bold text-3xl mb-4 text-center">Cart</h1>
-          <button
-            className="text-white bg-red-500 p-2 mb-4 mx-auto rounded-lg font-medium w-[100px]"
-            onClick={handleEmptyCart}
-          >
-            Empty Cart
-          </button>
+        <div className="flex flex-row justify-between mb-4 mx-4 max-[470px]:flex-col max-[470px]:items-start">
+          <div className="flex items-center justify-center">
+            <img
+              height="50"
+              width="50"
+              className="rounded-sm self-start pt-2"
+              alt="cart-restaurant-image"
+              src={CART_IMG_CDN_URL + cartRestaurantCloudinaryImageId}
+            />
+            <div className="flex flex-col justify-start items-start ml-2">
+              <h1 className="font-medium text-lg text-left text-wrap ">
+                {cartRestaurantName}
+              </h1>
+              <p className="text-sm opacity-70 dark:opacity-80 text-left text-wrap">{areaName}</p>
+            </div>
+          </div>
+          <div className="flex justify-center self-center">
+            <button
+              className="text-red-500 bg-inherit py-[8px] px-[16px] mx-1 h-14 self-top rounded-lg font-medium max-[470px]:mt-4 ring-red-500 focus:ring-4 hover:ring-2"
+              onClick={handleEmptyCart}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 7l-2 14H7L5 7M10 4V3a1 1 0 1 1 2 0v1h6a2 2 0 0 1 2 2v1H4V7a2 2 0 0 1 2-2h6z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Cart Items list */}
-        <div className="cart-items-container pt-4 mx-4 bg-gray-100 dark:bg-gray-900 rounded-sm max-h-[450px] overflow-y-auto border-2 dark:border-gray-700">
+        <div className="cart-items-container pt-4 mx-4 bg-gray-100 dark:bg-gray-900 rounded-sm max-h-[450px] overflow-y-auto border-2 dark:border-gray-700 ">
           {cartItems.map((item) => (
-            <Item 
-            key={item.card.info.id} 
-            item={item}
-            handleIncrease={handleIncrease}
-            handleDecrease={handleDecrease}
+            <Item
+              key={item.card.info.id}
+              item={item}
+              handleIncrease={handleIncrease}
+              handleDecrease={handleDecrease}
             />
           ))}
 

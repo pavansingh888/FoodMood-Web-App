@@ -5,3 +5,4 @@ export const FETCH_RES_URL = 'https://www.swiggy.com/dapi/restaurants/list/v5?la
 export const FETCH_RESMENU_URL="https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=";
 export const PLATFORM_FEE = 10;
 export const PACKAGING_CHARGE = 30;
+export const CART_IMG_CDN_URL= "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_100,h_100,c_fill/"

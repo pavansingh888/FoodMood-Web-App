@@ -49,5 +49,29 @@
 }
 
 
+/* Custom Scrollbar for Light Mode */
+.cart-items-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cart-items-container::-webkit-scrollbar-track {
+  background: #e5e7eb; /* Light gray background */
+}
+
+.cart-items-container::-webkit-scrollbar-thumb {
+  background: #d1d5db; /* Darker gray thumb */
+  border-radius: 4px;
+}
+
+/* Custom Scrollbar for Dark Mode */
+.dark .cart-items-container::-webkit-scrollbar-track {
+  background: #1f2937; /* Darker background for dark mode */
+}
+
+.dark .cart-items-container::-webkit-scrollbar-thumb {
+  background: #4b5563; /* Light gray thumb for dark mode */
+}
+
+
 
   

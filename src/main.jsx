@@ -7,7 +7,6 @@ import Error from './components/Error'
 import About from './components/About'
 import Body from './components/Body'
 import RestaurantMenu from './components/RestaurantMenu.jsx'
-import ShimmerCard from './components/ShimmerCard.jsx'
 import Cart from './components/Cart.jsx'
 import Login from './components/Login.jsx'
 // import Contact from './components/Contact.jsx' //Instead of this we do lazy loading/ On Demad loading
@@ -24,10 +23,6 @@ const router = createBrowserRouter([
         element:<Body/>,
         errorElement: <Error/>,   
       },
-      // {
-      //   path: '/contact',
-      //   element: <Contact/>,
-      // },
       {
         path: '/about',
         element: <About/>,
