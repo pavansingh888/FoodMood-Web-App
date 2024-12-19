@@ -26,14 +26,14 @@ const CartResetPopup = ({ showPopup, noResetHandler, setResetFlag}) => {
             onClick={noResetHandler}
             className="bg-gray-300 text-gray-800 px-4 py-2  w-[40%] rounded-md hover:bg-gray-400 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
           >
-            No
+            NO
           </button>
           {/* Yes Button */}
           <button
             onClick={setResetFlag}
-            className="bg-orange-500 text-white px-4 py-2 w-[40%] rounded-md hover:bg-orange-600"
+            className="bg-teal-500 hover:bg-teal-600 dark:bg-teal-600 dark:hover:bg-teal-700 text-white px-4 py-2 w-[40%] rounded-md"
           >
-            Yes
+            YES, START AFRESH
           </button>
         </div>
       </div>

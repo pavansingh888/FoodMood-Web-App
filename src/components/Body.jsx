@@ -1,10 +1,9 @@
 import RestaurantCard, { withDiscountLabel } from "./RestaurantCard";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { FETCH_RES_URL } from "../utils/constants";
 import ShimmerCard from "./ShimmerCard";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../utils/UserContext";
 import Error from "./Error";
 
 const Body = () => {
@@ -17,8 +16,6 @@ const Body = () => {
   //Using higher order component - Which will give a Restaurant card component wrapped in a div with the discount label.
   const RestaurantCardDiscount = withDiscountLabel(RestaurantCard);
 
-  const { loggedInUser, setUserName } = useContext(UserContext);
-
   const handleClick = (e) => {
     if (e.nativeEvent.srcElement.firstChild.textContent === "All") {
       setrestaurantList([...fetchedList]);
@@ -29,16 +26,10 @@ const Body = () => {
     } else {
       setIsFiltered(true);
       setrestaurantList([
-        ...fetchedList.filter((data) => data.info.avgRating > 4.2),
+        ...fetchedList.filter((data) => data.info.avgRating > 4.5),
       ]);
     }
   };
-
-  // const handleKeyDown = (event) => {
-  //   if (event.key === 'Enter') {
-  //     handleSearch();
-  //   }
-  // };
 
   const handleSearch = () => {
     if (searchInput) {
@@ -92,41 +83,38 @@ const Body = () => {
 
   return (
     <div className="body bg-gray-200 dark:bg-gray-900">
-      <div className="search-and-filter flex flex-col sm:flex-row items-center justify-center py-4 space-y-4 sm:space-y-0 sm:space-x-4">
+      <div className="search-and-filter flex flex-col items-center justify-center pt-4 sm:space-y-0 sm:space-x-4">
         <input
-          className="search-input w-full sm:w-auto mb-4 sm:mb-0 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+          className="search-input w-[90%] sm:w-[600px] mb-4 mx-4  px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
           placeholder="Search restaurant here..."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-        />
-        <div className="flex flex-wrap justify-center space-x-2">
+        >
+          
+        </input>
+        <div className="flex flex-wrap justify-center space-x-2 w-[90%]">
           <button
-            className="search px-4 py-2 text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+            className="search px-4 py-2 mb-2 ml-2 text-white bg-teal-500 dark:bg-green-600 rounded-md dark:hover:bg-green-700 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 dark:focus:ring-green-400 "
             onClick={handleSearch}
           >
             Search
           </button>
           <button
-            className="filter-btn px-4 py-2 text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+            className="filter-btn px-4 py-2 mb-2  text-white bg-orange-600 rounded-xl hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
             onClick={handleClick}
           >
-            All
+            All Restaurants
           </button>
           <button
-            className={`filter-btn px-4 py-2 text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${
+            className={`filter-btn px-4 py-2 mb-2 mr-2 text-white bg-orange-600 rounded-xl hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${
               isFiltered ? "bg-orange-800" : ""
             }`}
             onClick={handleClick}
           >
-            Top Rated Restaurant (4.2+)
+            Top Rated Restaurant (4.5+)
           </button>
-          <label className="text-white self-center">Username: </label>
-          <input
-            className="search-input w-full sm:w-auto mb-4 sm:mb-0 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
-            placeholder="Provide username here..."
-            value={loggedInUser}
-            onChange={(e) => setUserName(e.target.value)}
-          />
+          
+         
         </div>
       </div>
       {searchInput && restaurantList.length === 0 ? (

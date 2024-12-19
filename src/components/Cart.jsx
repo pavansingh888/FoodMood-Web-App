@@ -25,12 +25,17 @@ function Cart() {
     (store) => store.cart.currentCartRestaurantInfo?.cloudinaryImageId
   );
 
+  const dispatch = useDispatch();
+  const [isNoContact, setIsNoContact] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const dispatch = useDispatch();
-  const [isNoContact, setIsNoContact] = useState(false);
+  useEffect(() => {
+    if (cartItems.length === 0) dispatch(clearCurrentCartRestaurantInfo());
+  }, [cartItems, dispatch, clearCurrentCartRestaurantInfo]);
+
   const [, totalPrice] = useTotalCartItems();
   const gstAndRestaurantCharges =
     PACKAGING_CHARGE +
@@ -42,7 +47,7 @@ function Cart() {
     dispatch(incrementQuantity({ id: itemId }));
   };
 
-  const handleDecrease = (itemId, quantity) => {
+  const handleDecrease = (itemId, quantity, cartItems) => {
     if (quantity > 1) {
       dispatch(decrementQuantity({ id: itemId }));
     } else {
@@ -77,7 +82,9 @@ function Cart() {
               <h1 className="font-medium text-lg text-left text-wrap ">
                 {cartRestaurantName}
               </h1>
-              <p className="text-sm opacity-70 dark:opacity-80 text-left text-wrap">{areaName}</p>
+              <p className="text-sm opacity-70 dark:opacity-80 text-left text-wrap">
+                {areaName}
+              </p>
             </div>
           </div>
           <div className="flex justify-center self-center">
@@ -91,11 +98,11 @@ function Cart() {
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                stroke-width="2"
+                strokeWidth="2"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M19 7l-2 14H7L5 7M10 4V3a1 1 0 1 1 2 0v1h6a2 2 0 0 1 2 2v1H4V7a2 2 0 0 1 2-2h6z"
                 />
               </svg>

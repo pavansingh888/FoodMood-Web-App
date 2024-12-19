@@ -17,7 +17,6 @@ import {
   clearCurrentCartRestaurantInfo,
 } from "../utils/cartSlice";
 
-
 function RestaurantMenu() {
   // const [resMenu, setResMenu] = useState(null)
   const { resId } = useParams(); //it will give the resId in form of object from the dynamic route we created in router.
@@ -25,24 +24,29 @@ function RestaurantMenu() {
   const [resetWithItem, setResetWithItem] = useState({});
   const [resetFlag, setResetFlag] = useState(false);
   const [showIndex, setShowIndex] = useState([0]);
-  
+
   const currentCartRestaurantInfo = useSelector(
     (store) => store.cart.currentCartRestaurantInfo
   );
   const currentRestaurantInfo = useSelector(
     (store) => store.cart.currentRestaurantInfo
   );
+  const cartItemsLength = useSelector((store) => store.cart.items.length);
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(()=>{
-    if(resetFlag){
-      handleAddItem(resetWithItem,resetFlag)
+  useEffect(() => {
+    if (resetFlag) {
+      handleAddItem(resetWithItem, resetFlag);
     }
-  },[resetFlag])
+  }, [resetFlag]);
+
+  useEffect(() => {
+    if (cartItemsLength === 0) dispatch(clearCurrentCartRestaurantInfo());
+  }, [cartItemsLength, dispatch, clearCurrentCartRestaurantInfo]);
 
   const resMenu = useRestaurantMenu(resId); //Implementing Single responsibility of RestaurantMenu.jsx -Using Custom hook to fetch Res-Menu data.
   // console.log(resMenu);
@@ -59,7 +63,8 @@ function RestaurantMenu() {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
   //  console.log(Category);
-  const isDifferentRestaurant = id !== currentCartRestaurantInfo?.id ? true : false;
+  const isDifferentRestaurant =
+    id !== currentCartRestaurantInfo?.id ? true : false;
 
   const handleAddItem = (item, resetFlag) => {
     //1.On click of button we will dispatch an action with 'item' that we get from  items.map((item)=>{}) in JSX to add it in items array of cartSlice in our store. for that we will need access to dispatch
@@ -72,14 +77,14 @@ function RestaurantMenu() {
      */
     if (
       Object.keys(currentCartRestaurantInfo).length === 0 ||
-      !isDifferentRestaurant || resetFlag
+      !isDifferentRestaurant ||
+      resetFlag
     ) {
-
-      if(resetFlag){
-         dispatch(clearCart());
-         dispatch(clearCurrentCartRestaurantInfo());
-         setShowPopup(false);
-         dispatch(updateCurrentCartRestaurantInfo({ currentRestaurantInfo }));
+      if (resetFlag) {
+        dispatch(clearCart());
+        dispatch(clearCurrentCartRestaurantInfo());
+        setShowPopup(false);
+        dispatch(updateCurrentCartRestaurantInfo({ currentRestaurantInfo }));
       }
 
       if (Object.keys(currentCartRestaurantInfo).length === 0) {
@@ -87,7 +92,6 @@ function RestaurantMenu() {
       }
 
       dispatch(addItem({ item }));
-      
     } else {
       setShowPopup(true);
       setResetWithItem(item);
@@ -105,7 +109,6 @@ function RestaurantMenu() {
       dispatch(removeItem({ id: itemId }));
     }
   };
-
 
   return (
     <div className="flex flex-col items-stretch min-h-screen p-4 bg-white dark:bg-gray-900  ">
@@ -146,7 +149,7 @@ function RestaurantMenu() {
         }}
         handleAddItem
         resetFlag
-        setResetFlag = {() => setResetFlag(true)}
+        setResetFlag={() => setResetFlag(true)}
       />
     </div>
   );
