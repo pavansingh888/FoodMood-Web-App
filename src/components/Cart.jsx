@@ -39,8 +39,7 @@ function Cart() {
   const [, totalPrice] = useTotalCartItems();
   const gstAndRestaurantCharges =
     PACKAGING_CHARGE +
-    Math.round(totalPrice * 18) / 100 +
-    Math.round(PLATFORM_FEE * 18) / 100;
+    Math.round((totalPrice + PLATFORM_FEE )*18 / 100 );
   const toPayAmount = totalPrice + PLATFORM_FEE + gstAndRestaurantCharges;
 
   const handleIncrease = (itemId) => {
