@@ -66,7 +66,7 @@ const Body = () => {
       setFetchedList([...foundRestaurant]);
       setrestaurantList([...foundRestaurant]); //optional chaining
     } catch (err) {
-      console.error("Error fetching restaurants:", error);
+      console.error("Error fetching restaurants:", err);
       setError(true);
     }
   };
