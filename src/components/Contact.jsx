@@ -1,16 +1,55 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
+import emailjs from "@emailjs/browser"
 
 function Contact() {
   const [submitStatus, setSubmitStatus] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const form = useRef();
+
   const handleSubmit = (e) => {
-     e.preventDefault();
-     setSubmitStatus(true)
+    e.preventDefault();
+    console.log(e)
+    if(validateEmail(e.target[1].value)){
+       emailjs.sendForm('service_z8fzfsi', 'foodmood_contact_form', form.current, {
+        publicKey: 'q0HV_FVTfQmACHdxv',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+          alert('Thank you for your message. I will get back to you soon!');
+          setSubmitStatus(true);
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          alert('Email service seems down. Please contact me on Linkedin');
+          setSubmitStatus(false);
+        },
+      );
+    }
+        
   }
+
+  const validateEmail = (email) => {
+    let validRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email.match(validRegex)) {
+      // Valid email address
+      setEmailError("");
+      return true;
+    } else if (email === "") {
+      setEmailError("Email is empty!");
+      return false;
+    } else {
+      // Invalid email address
+      setEmailError("Invalid email address!");
+      return true;
+    }   };
+
   return (
     <div className='contact-container-main w-full bg-gray-200 dark:bg-gray-900 dark:text-white min-h-screen flex flex-wrap justify-evenly items-center text-center'>
 
@@ -44,10 +83,13 @@ function Contact() {
       
      <div className="contact-form flex flex-col justify-evenly items-center m-5 py-5 px-2 w-[250px] ">
       <h1 className='text-center text-2xl'>Contact us</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col justify-evenly items-center mt-[10px]gap-5 m-3 w-full'>
-        <input type="text" placeholder="Name" required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline outline-1 focus:outline-orange-600 '/>
-        <input type="email" placeholder="Email" required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline focus:outline-orange-600 outline-1'/>
-        <textarea placeholder="Type your Message here..." required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline focus:outline-orange-600 outline-1'></textarea>
+      <form onSubmit={handleSubmit} ref={form} id="contactForm" className='flex flex-col justify-evenly items-center mt-[10px]gap-5 m-3 w-full'>
+        <input type="text" placeholder="Name" id='name' name='name' required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline outline-1 focus:outline-orange-600 '/>
+        <input type="email" placeholder="Email" id='email' name='email' required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline focus:outline-orange-600 outline-1'/>
+        {emailError && (
+        <p className="email-error-message text-red-500 font-medium">{emailError}</p>)}
+        <input type="text" placeholder="Subject" id='subject' name='subject' required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline outline-1 focus:outline-orange-600 '/>
+        <textarea placeholder="Type your Message here..." id="message" name="message" required className='m-[10px] p-[10px] border rounded-lg dark:bg-gray-800 w-full outline focus:outline-orange-600 outline-1'></textarea>
         <button type="submit" className='my-3 py-3 px-2 mx-2 w-full bg-orange-500 rounded-lg text-base hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500' >Submit</button>
         {submitStatus && <span className='form-notification'>Please contact me on Linkedin. Thankyou for visiting!</span> }
 
