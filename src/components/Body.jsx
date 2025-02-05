@@ -17,8 +17,9 @@ const Body = () => {
   const RestaurantCardDiscount = withDiscountLabel(RestaurantCard);
 
   const handleClick = (e) => {
-    if (e.nativeEvent.srcElement.firstChild.textContent === "All") {
+    if (e.nativeEvent.srcElement.firstChild.textContent === "All Restaurants") {
       setrestaurantList([...fetchedList]);
+      setSearchInput("")
       setIsFiltered(false);
     } else if (isFiltered) {
       setIsFiltered(false);
@@ -82,7 +83,7 @@ const Body = () => {
   }
 
   return (
-    <div className="body bg-gray-200 dark:bg-gray-900">
+    <div className="body bg-gray-200 dark:bg-gray-900 min-h-screen">
       <div className="search-and-filter flex flex-col items-center justify-center pt-4 sm:space-y-0 sm:space-x-4">
         <input
           className="search-input w-[90%] sm:w-[600px] mb-4 mx-4  px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
